@@ -1,0 +1,28 @@
+---
+- hosts: team2
+  sudo: yes
+  sudo_user: root
+
+  tasks:
+    - name: Install Couchdb 
+      apt: pkg=couchdb state=latest 
+
+    - name: Install Java Runtime Environment
+      apt: pkg=default-jre state=latest
+
+    - name: Install Java 
+      apt: pkg=default-jdk state=latest
+
+    - name : Install apache2
+      apt: pkg=apache2 state=latest 
+
+    - name : Install pip
+      apt: pkg=python-pip state=latest
+
+    - name : Install textblob
+      shell: pip install -U textblob
+
+    - name: Download the necessary NLTK corpora for textblob
+      shell: python -m textblob.download_corpora
+
+#sudo ansible-playbook -i hosts set.yml
