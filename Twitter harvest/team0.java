@@ -151,7 +151,6 @@ public class team0 {
 
     			@Override
     			public void onStallWarning(StallWarning arg0) {
-    				// TODO 鑷姩鐢熸垚鐨勬柟娉曞瓨鏍�
     				
     			}
         };

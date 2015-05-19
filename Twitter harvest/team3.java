@@ -12,7 +12,7 @@ import net.sf.json.JSONException;
 import com.fourspaces.couchdb.Database;
 import com.fourspaces.couchdb.Document;
 import com.fourspaces.couchdb.Session;
-public class team3 {
+public class team4 {
 
     public static Database connectCouchDB(String strDBName) {
         Database dbCouchDB = null;
@@ -45,14 +45,14 @@ public class team3 {
 
     public static void main(String[] args) throws IOException, TwitterException {
 
-        String strdbName = "data3";
+        String strdbName = "data4";
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
-              .setOAuthConsumerKey("ZIw8VwCYLs3R1zH2jPb2N9a9a")
-              .setOAuthConsumerSecret("wLdZrOY2797VXEtJlelkkuG3Iod5oirQEnvPr14XFpJgnVj69u")
-              .setOAuthAccessToken("1569890539-RzvUSs17gCUDq67dm8NypDU6Oxwqj7taIh3mcWX")
-              .setOAuthAccessTokenSecret("GId43N1tsQJ8xTbEb4rNykZ6hSW6onCkdwcKuSjoYeVPa");
-        
+              .setOAuthConsumerKey("nvHbDQCFvqZSU2r0Qkm5cocn2")
+              .setOAuthConsumerSecret("vsnAjgUOuv9CLG53gJB8reABJzEkte2sZFsSXh3dxSmRvDwLpw")
+              .setOAuthAccessToken("1569890539-kNjoZk2N4QQbSbQ2jRiHels8WNM33FFwDTC4IIb")
+              .setOAuthAccessTokenSecret("T90MQUtm8uB6G38PKJTzAUScKe53aFHIBni743b4JMKIC");
+
         TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
 
         TwitterStream twitterStream = twitterStreamFactory.getInstance();
@@ -82,20 +82,19 @@ public class team3 {
                         }
                         catch(JSONException j){
                             System.out.println("same id");
-                        }                                                                                           
+                        }                                                                                         
                     Query query2 = new Query(username);
                     query2.setCount(100);
                         try {
                             ConfigurationBuilder cb2 = new ConfigurationBuilder();
                             cb2.setDebugEnabled(true);
-                            cb2.setOAuthConsumerKey("ZwWBfzOBoEJ4zt18A9ZePsnFK");
-                            cb2.setOAuthConsumerSecret("TrYtwUkIg0dEkcSZS0PD8wUr3ylABeDZfrdGIkJmsWAWfUVWSg");
-                            cb2.setOAuthAccessToken("3180591786-5sNzdbPk4ED7ur9Fr93nL1Ntw99VaajMMQNDzJ2");
-                            cb2.setOAuthAccessTokenSecret("TebFo8st6Cgq1TnnrEFLkOHa6EYDKuqmAYWmeftl4UEhl");
+                            cb2.setOAuthConsumerKey("d2OHUagURLrtndAPHDVI96X4B");
+                            cb2.setOAuthConsumerSecret("P25yd8cgIqV9OsfrlLRRa6rkZAry3NdiDNNZ5AzSpqG5oiOztY");
+                            cb2.setOAuthAccessToken("1569890539-YCwr3FiqwjVP4oZGk8G7wdjxgTT7K9tHgXwxzBl");
+                            cb2.setOAuthAccessTokenSecret("gDJlbiRjADr4dqBvLjYO0Q3WaDCK9s1E1Uu2jpKLpdm5s");
                             TwitterFactory tf = new TwitterFactory(cb2.build());                           
                             Twitter twitter = tf.getInstance();                       
                             QueryResult result = twitter.search(query2);
-                            query2.count(100);
                             do{
                                 List<Status> tweets = result.getTweets();
                                 for (Status tweet : tweets){
@@ -118,7 +117,7 @@ public class team3 {
                                 }query2=result.nextQuery();
                                 if(query2!=null)
                                     result=twitter.search(query2);
-                                    }while(query2!=null);                                   
+                                    }while(query2!=null);                                    
                         } catch (TwitterException e) {
                             e.printStackTrace();
                         }
@@ -153,7 +152,6 @@ public class team3 {
 
                 @Override
                 public void onStallWarning(StallWarning arg0) {
-                    // TODO 鑷姩鐢熸垚鐨勬柟娉曞瓨鏍�
                     
                 }
         };
@@ -162,7 +160,7 @@ public class team3 {
         String[] lang = {"en"};
         query.language(lang);
         
-        double[][] locations = {{-83.18328225,42.255192},{-83.0786055,42.47657}};
+        double[][] locations = {{-83.287959,42.255192},{-83.18328225,42.47657}};
         //query.track(track);
         query.locations(locations);
         twitterStream.addListener(listener);

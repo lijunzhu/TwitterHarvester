@@ -5,14 +5,13 @@ import twitter4j.conf.ConfigurationBuilder;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import net.sf.json.JSONException;
 
 import com.fourspaces.couchdb.Database;
 import com.fourspaces.couchdb.Document;
 import com.fourspaces.couchdb.Session;
-public class team4 {
+public class team2 {
 
     public static Database connectCouchDB(String strDBName) {
         Database dbCouchDB = null;
@@ -45,13 +44,13 @@ public class team4 {
 
     public static void main(String[] args) throws IOException, TwitterException {
 
-        String strdbName = "data4";
+        String strdbName = "data2";
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
-              .setOAuthConsumerKey("nvHbDQCFvqZSU2r0Qkm5cocn2")
-              .setOAuthConsumerSecret("vsnAjgUOuv9CLG53gJB8reABJzEkte2sZFsSXh3dxSmRvDwLpw")
-              .setOAuthAccessToken("1569890539-kNjoZk2N4QQbSbQ2jRiHels8WNM33FFwDTC4IIb")
-              .setOAuthAccessTokenSecret("T90MQUtm8uB6G38PKJTzAUScKe53aFHIBni743b4JMKIC");
+              .setOAuthConsumerKey("vpIOG6O2CbVEG2q4GiCWy6NuL")
+              .setOAuthConsumerSecret("7Ua1o6yAridAllwqLDL17QQmKSukmCVyww4Dr2GCBK2xsS30ah")
+              .setOAuthAccessToken("1569890539-3PjAVjMnI7RxHb44ui5Zr86GaphEehAwhx8c3uv")
+              .setOAuthAccessTokenSecret("rGz9iakj6O1Wvwcjl6v6bfPp2ttZw34JcsHVZpDzqumfd");
 
         TwitterStreamFactory twitterStreamFactory = new TwitterStreamFactory(cb.build());
 
@@ -74,50 +73,50 @@ public class team4 {
                     long tweetId = status.getId(); 
                     System.out.println(tweetId);
                     String content = status.getText();
-                    System.out.println(content +"\n");             
+                    System.out.println(content +"\n");
                     try{
-                        Document document = tweetToCouchDocument(status);
-                        dbInstance.saveDocument(document);
-                        System.out.println("Add one Document");
-                        }
-                        catch(JSONException j){
-                            System.out.println("same id");
-                        }                                                                                         
+                    Document document = tweetToCouchDocument(status);
+                    dbInstance.saveDocument(document);
+                    System.out.println("Add one Document");
+                    }
+                    catch(JSONException j){
+                        System.out.println("same id");
+                    }
                     Query query2 = new Query(username);
-                    query2.setCount(100);
+                    query2.count(100);
                         try {
                             ConfigurationBuilder cb2 = new ConfigurationBuilder();
                             cb2.setDebugEnabled(true);
-                            cb2.setOAuthConsumerKey("d2OHUagURLrtndAPHDVI96X4B");
-                            cb2.setOAuthConsumerSecret("P25yd8cgIqV9OsfrlLRRa6rkZAry3NdiDNNZ5AzSpqG5oiOztY");
-                            cb2.setOAuthAccessToken("1569890539-YCwr3FiqwjVP4oZGk8G7wdjxgTT7K9tHgXwxzBl");
-                            cb2.setOAuthAccessTokenSecret("gDJlbiRjADr4dqBvLjYO0Q3WaDCK9s1E1Uu2jpKLpdm5s");
+                            cb2.setOAuthConsumerKey("j2qXsyQmIR2WOubpmchf42zVo");
+                            cb2.setOAuthConsumerSecret("kz8YEVl815peRH9IVOaUhBof2ee3oC7TLhqShJVImEglP3salc");
+                            cb2.setOAuthAccessToken("1569890539-8JNSEJPoupYZvVGZYl8bVbPvL29WSRc90N1hzRX");
+                            cb2.setOAuthAccessTokenSecret("WXp36ZzTpH7vdSs0EtayLb4q4iQCi4FF6V41SpU6L2WmB");
                             TwitterFactory tf = new TwitterFactory(cb2.build());                           
                             Twitter twitter = tf.getInstance();                       
                             QueryResult result = twitter.search(query2);
                             do{
-                                List<Status> tweets = result.getTweets();
-                                for (Status tweet : tweets){
-                                    if (  tweet.getGeoLocation() != null && tweet.getGeoLocation().getLatitude()!=0){
-                                    String username2 = tweet.getUser().getScreenName();
-                                    System.out.println(username2);              
-                                    System.out.println("lacation: "+ tweet.getGeoLocation().getLatitude()+","+tweet.getGeoLocation().getLongitude());
-                                    long tweetId2 = tweet.getId(); 
-                                    System.out.println(tweetId2);
-                                    String content2 = tweet.getText();
-                                    System.out.println(content2 +"\n");
-                                    try{
-                                    Document document2 = tweetToCouchDocument(tweet);
-                                    dbInstance.saveDocument(document2);
-                                    System.out.println("Add one Document");}
-                                    catch(JSONException j){
-                                        System.out.println("same id");
-                                    }
-                                    }
-                                }query2=result.nextQuery();
-                                if(query2!=null)
-                                    result=twitter.search(query2);
-                                    }while(query2!=null);                                    
+                            List<Status> tweets = result.getTweets();
+                            for (Status tweet : tweets){
+                                if (  tweet.getGeoLocation() != null && tweet.getGeoLocation().getLatitude()!=0){
+                                String username2 = tweet.getUser().getScreenName();
+                                System.out.println(username2);              
+                                System.out.println("lacation: "+ tweet.getGeoLocation().getLatitude()+","+tweet.getGeoLocation().getLongitude());
+                                long tweetId2 = tweet.getId(); 
+                                System.out.println(tweetId2);
+                                String content2 = tweet.getText();
+                                System.out.println(content2 +"\n");
+                                try{
+                                Document document2 = tweetToCouchDocument(tweet);
+                                dbInstance.saveDocument(document2);
+                                System.out.println("Add one Document");}
+                                catch(JSONException j){
+                                    System.out.println("same id");
+                                }
+                                }
+                            }query2=result.nextQuery();
+                            if(query2!=null)
+                                result=twitter.search(query2);
+                                }while(query2!=null);                                                       
                         } catch (TwitterException e) {
                             e.printStackTrace();
                         }
@@ -152,7 +151,6 @@ public class team4 {
 
                 @Override
                 public void onStallWarning(StallWarning arg0) {
-                    // TODO 鑷姩鐢熸垚鐨勬柟娉曞瓨鏍�
                     
                 }
         };
@@ -161,7 +159,7 @@ public class team4 {
         String[] lang = {"en"};
         query.language(lang);
         
-        double[][] locations = {{-83.287959,42.255192},{-83.18328225,42.47657}};
+        double[][] locations = {{-83.0786055,42.255192},{-82.97392875,42.47657}};
         //query.track(track);
         query.locations(locations);
         twitterStream.addListener(listener);
